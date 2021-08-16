@@ -1,20 +1,27 @@
-import React from 'react';
-import './MemoryCard.css'
-// import logo from './Logo.png'
+import React, { Component } from 'react'
 
+import './MemoryCard.css';
+import logo from './WrenchLogo.png';
 
-class MemoryCard extends React.Component {
+class Card extends Component {
     render() {
+        let innerClass = "MemoryCard__inner";
+        if (this.props.isFlipped) {
+            innerClass += ' flipped';
+        }
         return (
-            <div className="MemoryCard">
-                <div className="logo">
-                    <img alt="img" width="80px"
-                        src="https://www.digitalcrafts.com/img/logo-wrench-white.png">
-                    </img>
+            <div className="MemoryCard" onClick={this.props.pickCard}>
+                <div className={innerClass}>
+                    <div className="MemoryCard__back">
+                        <img src={logo} alt="" />
+                    </div>
+                    <div className="MemoryCard__front">
+                        {this.props.symbol}
+                    </div>
                 </div>
             </div>
-        );
+        )
     }
 }
 
-export default MemoryCard
+export default Card;
